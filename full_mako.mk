@@ -17,6 +17,14 @@
 # Sample: This is where we'd set a backup provider if we had one
 # $(call inherit-product, device/sample/products/backup_overlay.mk)
 
+# Inherit device configuration
+$(call inherit-product, device/lge/mako/device.mk)
+
+$(call inherit-product, vendor/ax/config/gsm.mk)
+
+# Inherit some common AX stuff.
+$(call inherit-product, vendor/ax/config/common_full_phone.mk)
+
 # Get the long list of APNs
 PRODUCT_COPY_FILES := device/sample/etc/apns-full-conf.xml:system/etc/apns-conf.xml
 
@@ -28,8 +36,7 @@ PRODUCT_DEVICE := mako
 PRODUCT_BRAND := Android
 PRODUCT_MODEL := AOSP on Mako
 PRODUCT_MANUFACTURER := LGE
-PRODUCT_RESTRICT_VENDOR_FILES := true
+PRODUCT_RESTRICT_VENDOR_FILES := false
 
 # Inherit from hardware-specific part of the product configuration
-$(call inherit-product, device/lge/mako/device.mk)
 $(call inherit-product-if-exists, vendor/lge/mako/device-vendor.mk)
